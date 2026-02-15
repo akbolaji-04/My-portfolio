@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/api";
 import { Project } from "@/lib/types";
 import Link from "next/link";
-import { Plus, Settings, Trash2, Edit3, ExternalLink } from "lucide-react";
+import { Plus, Trash2, Edit3, ExternalLink } from "lucide-react";
 
 export default function AdminDashboard() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     const fetchAll = async () => {
-      // Fetching all (including drafts) for admin
       const data = await apiFetch<Project[]>("/projects");
       setProjects(data);
     };
@@ -19,7 +18,7 @@ export default function AdminDashboard() {
   }, []);
 
   const deleteProject = async (id: string) => {
-    if (!confirm("Are you sure?")) return;
+    if (!confirm("Are you sure you want to delete this project?")) return;
     const token = localStorage.getItem("admin_token");
     await apiFetch(`/projects/${id}`, {
       method: "DELETE",
@@ -45,8 +44,12 @@ export default function AdminDashboard() {
           {projects.map(project => (
             <div key={project.id} className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-3xl flex items-center justify-between group hover:border-zinc-700 transition-all">
               <div className="flex items-center gap-6">
-                <div className="h-16 w-24 bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800">
-                  {project.media?.[0] && <img src={project.media[0].file_url} className="object-cover w-full h-full opacity-60" />}
+                <div className="h-16 w-24 bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800 relative">
+                  {project.media?.[0] ? (
+                    <img src={project.media[0].file_url} className="object-cover w-full h-full opacity-60" alt={project.title} />
+                  ) : (
+                    <div className="w-full h-full bg-zinc-900" />
+                  )}
                 </div>
                 <div>
                   <h3 className="font-bold text-xl">{project.title}</h3>
@@ -58,9 +61,12 @@ export default function AdminDashboard() {
                 <Link href={`/projects/${project.slug}`} target="_blank" className="p-3 bg-zinc-800 rounded-full hover:text-rose-500 transition-colors">
                   <ExternalLink size={18} />
                 </Link>
-                <button className="p-3 bg-zinc-800 rounded-full hover:text-blue-500 transition-colors">
+                
+                {/* 👇 THIS IS THE FIXED EDIT LINK 👇 */}
+                <Link href={`/admin/projects/${project.slug}/edit`} className="p-3 bg-zinc-800 rounded-full hover:text-blue-500 transition-colors">
                   <Edit3 size={18} />
-                </button>
+                </Link>
+
                 <button onClick={() => deleteProject(project.id)} className="p-3 bg-zinc-800 rounded-full hover:text-rose-500 transition-colors">
                   <Trash2 size={18} />
                 </button>
