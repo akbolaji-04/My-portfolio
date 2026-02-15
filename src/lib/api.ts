@@ -10,30 +10,35 @@ export async function apiFetch<T>(
 ): Promise<T> {
   // Ensure endpoint starts with /
   const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  
+  const headers: HeadersInit = {
+    "Accept": "application/json",
+    ...(options.headers || {}),
+  };
+
+  // ⚠️ CRITICAL FIX: 
+  // If we are sending a File (FormData), DO NOT force "Content-Type: application/json".
+  // The browser will automatically set the correct "multipart/form-data" header for us.
+  if (!(options.body instanceof FormData)) {
+    (headers as Record<string, string>)["Content-Type"] = "application/json";
+  }
 
   try {
     const res = await fetch(`${API_URL}${cleanEndpoint}`, {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        ...(options.headers || {}),
-      },
-      // Cache 'no-store' ensures you always get fresh data (good for dev)
-      cache: "no-store", 
       ...options,
+      headers,
+      cache: "no-store",
     });
 
     if (!res.ok) {
       const errorText = await res.text();
       console.error(`API Error ${res.status} at ${endpoint}:`, errorText);
-      throw new Error(`API Error: ${res.status} ${res.statusText}`);
+      throw new Error(`API Error: ${res.status}`);
     }
 
     return res.json();
   } catch (error) {
     console.error("Network Error:", error);
-    // Return empty arrays for list endpoints to prevent UI crashes
-    if (endpoint === '/projects') return [] as unknown as T;
     throw error;
   }
 }
