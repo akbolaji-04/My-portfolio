@@ -26,4 +26,6 @@ export interface Project {
   github_url?: string;
   tech_tags: TechTag[];
   media: Media[];
+  role?: string;
+  year?: string;
 }

@@ -58,7 +58,7 @@ export default function About() {
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl">
             I’m <strong className="text-white">Abolaji Akorede</strong>, a software engineer based in Lagos. 
-            I don't just write functions; I build systems that solve actual human problems.
+            My core strength is building fast, scalable web and mobile applications focusing on clean architecture, performance, and user experience.
           </p>
         </motion.div>
 
@@ -84,12 +84,12 @@ export default function About() {
                 </p>
                 <p>
                   I cut my teeth working as a Senior Operator at <strong className="text-white">Flora Schools</strong>, 
-                  where I learned exactly how organizations struggle with data. That experience inspired me to build 
-                  <strong className="text-white"> EduCore</strong>—a system designed to fix those exact problems.
+                  where I learned exactly how organizations struggle with data. Seeing how poorly designed software slows 
+                  down real organizations had a lasting impact on how I build today.
                 </p>
                 <p>
-                  Now based in <strong className="text-white">Lagos</strong>, I combine the discipline of Laravel 
-                  with the interactivity of React and Flutter to create software that feels as good as it looks.
+                  Those experiences pushed me toward <strong className="text-white">engineering products</strong>, that are not only functional, 
+                  but thoughtful—systems that respect users, data, and long-term maintenance.
                 </p>
               </div>
             </section>

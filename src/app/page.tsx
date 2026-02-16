@@ -55,8 +55,8 @@ export default async function Home() {
         {/* 📝 Bio / Introduction */}
         <div className="max-w-2xl">
           <p className="text-xl text-zinc-400 leading-relaxed mb-6">
-            Building scalable, high-performance systems with <span className="text-zinc-200 font-semibold">React, Flutter, and Laravel</span>. 
-            Educational Technology Graduate (Unilorin) turning complex problems into clean UI.
+            Building scalable, high-performance systems with <span className="text-zinc-200 font-semibold">Next.js, Flutter, Firebase, and PostgressQL</span>. 
+            I'm passionate about crafting software that’s not just functional, but also thoughtful and maintainable.
           </p>
 
           {/* Location Badge */}

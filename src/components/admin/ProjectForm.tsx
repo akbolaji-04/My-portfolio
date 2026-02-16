@@ -20,16 +20,20 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
     title: initialData?.title || "",
     slug: initialData?.slug || "",
     short_description: initialData?.short_description || "",
+    full_description: initialData?.full_description || "",
     live_url: initialData?.live_url || "",
     github_url: initialData?.github_url || "",
     status: initialData?.status || "published",
+    role: initialData?.role || "",
+    year: initialData?.year || "",
+    project_type: initialData?.project_type || "Web Application",
     media: initialData?.media?.[0]?.id
       ? [initialData.media[0].id]
       : ([] as string[]),
     tech_tags: initialData?.tech_tags?.map((t) => t.name) || ([] as string[]),
   });
 
-  // 🏷️ Tech Tags Logic
+  //  Tech Tags Logic
   const [tagInput, setTagInput] = useState("");
   const handleAddTag = () => {
     if (tagInput && !formData.tech_tags.includes(tagInput)) {
@@ -47,7 +51,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
     });
   };
 
-  // 📸 Image Upload Logic
+  // Image Upload Logic
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.[0]) return;
     setUploading(true);
@@ -205,7 +209,52 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
           className="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-xl text-white focus:border-rose-500 outline-none h-32"
           placeholder="What does this project do?"
         />
-
+        {/* New Project Metadata Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-zinc-800/50">
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-zinc-500 uppercase">
+              Your Role
+            </label>
+            <input
+              value={formData.role}
+              onChange={(e) =>
+                setFormData({ ...formData, role: e.target.value })
+              }
+              className="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-white outline-none focus:border-rose-500"
+              placeholder="e.g. Lead Developer"
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-zinc-500 uppercase">
+              Project Year
+            </label>
+            <input
+              value={formData.year}
+              onChange={(e) =>
+                setFormData({ ...formData, year: e.target.value })
+              }
+              className="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-white outline-none focus:border-rose-500"
+              placeholder="2026"
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-zinc-500 uppercase">
+              Project Type
+            </label>
+            <select
+              value={formData.project_type}
+              onChange={(e) =>
+                setFormData({ ...formData, project_type: e.target.value })
+              }
+              className="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-white outline-none focus:border-rose-500 appearance-none"
+            >
+              <option value="Web Application">Web Application</option>
+              <option value="Mobile Application">Mobile Application</option>
+              <option value="Full-Stack System">Full-Stack System</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+            </select>
+          </div>
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-xs font-bold text-zinc-500 uppercase">
