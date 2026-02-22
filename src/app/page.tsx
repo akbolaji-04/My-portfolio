@@ -4,6 +4,8 @@ import ProjectCard from "@/components/ProjectCard";
 import { Layers, MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   // 🔥 Server-side fetching with 1-minute revalidation
   const projects = await apiFetch<Project[]>("/projects", {
