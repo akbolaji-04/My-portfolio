@@ -73,6 +73,11 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
         },
       );
       const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Upload failed");
+      }
+      
       setFormData({ ...formData, media: [data.id] }); // Store the Media UUID
     } catch (error) {
       alert("Upload failed. Check console.");
