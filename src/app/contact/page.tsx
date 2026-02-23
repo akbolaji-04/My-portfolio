@@ -44,21 +44,21 @@ export default function Contact() {
   const socialLinks = [
     {
       name: "GitHub",
-      url: "https://github.com/abolaji-ak", // Update with real link
+      url: "https://github.com/akbolaji-04", // Update with real link
       icon: <Github size={20} />,
       color: "bg-zinc-800",
       desc: "Code & Repos"
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/abolaji-akorede", // Update with real link
+      url: "https://www.linkedin.com/in/abolaji-akorede-1068ab327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", 
       icon: <Linkedin size={20} />,
       color: "bg-[#0077B5]",
       desc: "Professional Profile"
     },
     {
       name: "WhatsApp",
-      url: "https://wa.me/234XXXXXXXXXX", // Update with real number
+      url: "https://wa.me/2347069119429", 
       icon: <MessageCircle size={20} />,
       color: "bg-[#25D366]",
       desc: "Direct Chat"
@@ -68,16 +68,16 @@ export default function Contact() {
   const contentLinks = [
     {
       name: "TikTok",
-      handle: "@abolaji_tech", // Placeholder
-      url: "https://tiktok.com", 
+      handle: "@Abolaji", // Placeholder
+      url: "https://www.tiktok.com/@s_h.a_d_o_w?_r=1&_t=ZS-949W5Rj9fGS", 
       icon: <Video size={24} />,
       color: "from-pink-500 to-cyan-500",
       desc: "Tech Vlogs"
     },
     {
       name: "Instagram",
-      handle: "@abolaji_ak", 
-      url: "https://instagram.com",
+      handle: "@abolaji_akorede", 
+      url: "https://www.instagram.com/sh_adow004?utm_source=qr",
       icon: <Instagram size={24} />,
       color: "from-purple-500 to-orange-500",
       desc: "Personal & Tech"
