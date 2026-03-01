@@ -27,7 +27,7 @@ export async function apiFetch<T>(
     const res = await fetch(`${API_URL}${cleanEndpoint}`, {
       ...options,
       headers,
-      cache: "no-store",
+      cache: options.next ? undefined : (options.cache || "no-store"),
     });
 
     if (!res.ok) {
