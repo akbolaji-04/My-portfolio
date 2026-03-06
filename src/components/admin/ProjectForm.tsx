@@ -7,7 +7,7 @@ import { Project } from "@/lib/types";
 import { Loader2, UploadCloud, X } from "lucide-react";
 
 interface ProjectFormProps {
-  initialData?: Project; // Optional: Only present when editing
+  initialData?: Project; 
 }
 
 export default function ProjectForm({ initialData }: ProjectFormProps) {
@@ -67,7 +67,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
-            Accept: "application/json", // 👈 ADD THIS LINE
+            Accept: "application/json", 
           },
           body: fileBody,
         },
@@ -78,7 +78,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
         throw new Error(data.message || "Upload failed");
       }
       
-      setFormData({ ...formData, media: [data.id] }); // Store the Media UUID
+      setFormData({ ...formData, media: [data.id] }); 
     } catch (error) {
       alert("Upload failed. Check console.");
     } finally {
@@ -166,7 +166,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
         </div>
       </div>
 
-      {/* 3. Tech Tags (The Secret Sauce) */}
+      {/* 3. Tech Tags*/}
       <div>
         <label className="text-xs font-bold text-zinc-500 uppercase mb-2 block">
           Tech Stack
