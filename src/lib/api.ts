@@ -8,7 +8,6 @@ export async function apiFetch<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  // Ensure endpoint starts with /
   const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
   
   const headers: HeadersInit = {
@@ -16,9 +15,6 @@ export async function apiFetch<T>(
     ...(options.headers || {}),
   };
 
-  // ⚠️ CRITICAL FIX: 
-  // If we are sending a File (FormData), DO NOT force "Content-Type: application/json".
-  // The browser will automatically set the correct "multipart/form-data" header for us.
   if (!(options.body instanceof FormData)) {
     (headers as Record<string, string>)["Content-Type"] = "application/json";
   }
