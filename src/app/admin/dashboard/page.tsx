@@ -61,8 +61,7 @@ export default function AdminDashboard() {
                 <Link href={`/projects/${project.slug}`} target="_blank" className="p-3 bg-zinc-800 rounded-full hover:text-rose-500 transition-colors">
                   <ExternalLink size={18} />
                 </Link>
-                
-                {/* 👇 THIS IS THE FIXED EDIT LINK 👇 */}
+              
                 <Link href={`/admin/projects/${project.slug}/edit`} className="p-3 bg-zinc-800 rounded-full hover:text-blue-500 transition-colors">
                   <Edit3 size={18} />
                 </Link>
