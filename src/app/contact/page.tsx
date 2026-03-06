@@ -44,7 +44,7 @@ export default function Contact() {
   const socialLinks = [
     {
       name: "GitHub",
-      url: "https://github.com/akbolaji-04", // Update with real link
+      url: "https://github.com/akbolaji-04", 
       icon: <Github size={20} />,
       color: "bg-zinc-800",
       desc: "Code & Repos"
@@ -68,7 +68,7 @@ export default function Contact() {
   const contentLinks = [
     {
       name: "TikTok",
-      handle: "@Abolaji", // Placeholder
+      handle: "@Abolaji", 
       url: "https://www.tiktok.com/@s_h.a_d_o_w?_r=1&_t=ZS-949W5Rj9fGS", 
       icon: <Video size={24} />,
       color: "from-pink-500 to-cyan-500",
@@ -144,7 +144,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* 2. Content Creator Cards (Stacked Vertically) */}
+          {/* 2. Content Creator Cards  */}
           <div className="flex flex-col gap-6">
             {contentLinks.map((link, i) => (
               <motion.a
@@ -169,7 +169,7 @@ export default function Contact() {
             ))}
           </div>
 
-          {/* 3. Professional Links (Fixed Layout) */}
+          {/* 3. Professional Links */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
