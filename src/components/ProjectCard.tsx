@@ -5,7 +5,6 @@ import { ArrowUpRight, Github, Globe, Layers } from "lucide-react";
 import Link from "next/link";
 import { Project } from "@/lib/types";
 
-// 👇 THIS LINE IS WHAT FIXES YOUR ERROR
 export default function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.div
