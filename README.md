@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Headless Portfolio CMS
 
-## Getting Started
+> © 2024 Abolaji Akorede. All rights reserved. Unauthorized use, reproduction, or distribution of this project or any of its components is strictly prohibited.
 
-First, run the development server:
+A decoupled, high-performance content management system and personal portfolio architecture. This system intentionally separates the content management backend from the client-facing presentation layer, ensuring maximum scalability, enhanced security, and platform-agnostic data delivery.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## System Architecture
+
+This project follows a strict headless model across three independent layers:
+
+| Layer | Technology | Role |
+|---|---|---|
+| Presentation | Next.js (Vercel) | Edge-cached frontend with ISR |
+| API | Laravel 11 (Docker on Render) | REST API, auth, business logic |
+| Database | Supabase (PostgreSQL) | Managed storage with UUID routing |
+
+```
+Client Request
+      │
+      ▼
+[ Vercel Edge Cache (ISR) ]
+      │
+      ▼
+[ Next.js Frontend ]
+      │
+      │  API Fetch / Auth
+      ▼
+[ Laravel API — Docker on Render ]
+      │
+      │  Eloquent ORM
+      ▼
+[ Supabase PostgreSQL ]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Client — Next.js
 
-## Learn More
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS, Framer Motion
+- **Data Fetching:** Native Fetch API with ISR (`revalidate: 60`)
+- **State:** React Hooks, Context API
 
-To learn more about Next.js, take a look at the following resources:
+### API — Laravel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework:** Laravel 11.x (PHP 8.2+)
+- **Authentication:** Laravel Sanctum (Bearer Tokens)
+- **Database:** PostgreSQL via Eloquent ORM
+- **Media:** Cloudinary API
+- **Runtime:** Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Core Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Edge-speed delivery** — Static generation with background revalidation. Zero database round-trips for end users.
+- **Polymorphic data relationships** — Projects mapped to many-to-many technology tags and media assets.
+- **Secure admin dashboard** — Full bearer token protection for all portfolio management endpoints.
+- **Zero-downtime deployments** — CI/CD pipelines connected to `main` branches on both repos.
+- **Cold-start mitigation** — Automated CRON keep-alive routines on the Render API service.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Infrastructure
+
+| Service | Platform | Notes |
+|---|---|---|
+| Frontend | Vercel | Global CDN, Next.js-native edge caching |
+| Backend API | Render | Dockerized, persistent web service |
+| Database | Supabase | Managed PostgreSQL, connection pooling |
+| Media | Cloudinary | Asset storage and transformation |
+
+---
+
+## Local Development
+
+This system requires both the frontend and API to run concurrently.
+
+### 1. Clone the Repositories
+
+```bash
+# Frontend
+git clone https://github.com/akbolaji-04/My-portfolio
+
+# Backend API
+git clone https://github.com/akbolaji-04/Portfolio-Backend
+```
+
+### 2. Environment Setup
+
+**Frontend — `.env.local`**
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000/api
+```
+
+**Backend — `.env`**
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=portfolio_cms
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 3. Run the Development Servers
+
+**Start the Laravel API:**
+```bash
+composer install
+php artisan migrate --seed
+php artisan serve
+```
+
+**Start the Next.js Client:**
+```bash
+npm install
+npm run dev
+```
+
+| Service | URL |
+|---|---|
+| Frontend | http://localhost:3000 |
+| API | http://localhost:8000 |
+
+---
+
+## Author
+
+**Abolaji Akorede**  
+Architected and developed end-to-end.
+
+> © 2024 Abolaji Akorede. All rights reserved.  
+> This project, including its architecture, source code, and documentation, is the exclusive intellectual property of Abolaji Akorede. No part of this repository may be copied, modified, distributed, or used without explicit written permission from the author.
