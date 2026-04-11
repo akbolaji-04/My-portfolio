@@ -135,5 +135,5 @@ npm run dev
 **Abolaji Akorede**  
 Architected and developed end-to-end.
 
-> © 2024 Abolaji Akorede. All rights reserved.  
+> © 2026 Abolaji Akorede. All rights reserved.  
 > This project, including its architecture, source code, and documentation, is the exclusive intellectual property of Abolaji Akorede. No part of this repository may be copied, modified, distributed, or used without explicit written permission from the author.
