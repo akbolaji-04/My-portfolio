@@ -15,7 +15,21 @@ export default function About() {
       year: "2025 — Present",
       title: "Lead Full-Stack Developer",
       company: "Frontier Dynamics Limited · Lagos",
-      desc: "Leading the development of production applications for a growing tech startup. I handle frontend architecture, backend integrations, and overall technical direction, ensuring systems remain scalable and maintainable as they grow.",
+      desc: "Leading the engineering team to build the technical foundation for FDL's emerging digital products. Because I operate with high autonomy and an agile, milestone-driven workflow, I am able to scale their architecture rapidly while maintaining the flexibility to take on select freelance engineering contracts.",
+      highlights: [
+        {
+          label: "Rapid Deployment",
+          text: "Architected, developed, and successfully deployed the official corporate web platform from scratch in exactly 1 month.",
+        },
+        {
+          label: "Complex System Architecture",
+          text: "Currently engineering Hostel Connect, a scalable marketplace featuring a strict 4-tier Role-Based Access Control (RBAC) architecture and a secure escrow payment pipeline.",
+        },
+        {
+          label: "Engineering Leadership",
+          text: "Directing and mentoring a team of 5 development interns. I manage code reviews, assign technical deliverables, and enforce production-grade architecture standards.",
+        },
+      ],
     },
     {
       year: "2024 — Present",
@@ -39,12 +53,12 @@ export default function About() {
 
   return (
     <main className="min-h-screen bg-[#050505] text-zinc-300 selection:bg-rose-500 selection:text-white pt-32 pb-20">
-
+      
       {/* Background Glow */}
       <div className="fixed top-20 right-0 w-[500px] h-[500px] bg-rose-900/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto px-6">
-
+        
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,7 +84,7 @@ export default function About() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
+          
           {/* Left Column: Narrative & Timeline */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -109,11 +123,32 @@ export default function About() {
               <div className="border-l-2 border-zinc-800 ml-3 space-y-10 pl-8 relative">
                 {timeline.map((item, i) => (
                   <div key={i} className="relative">
+                    {/* Timeline Node */}
                     <div className="absolute -left-[41px] top-1.5 w-4 h-4 bg-[#050505] border-2 border-rose-500 rounded-full" />
-                    <span className="text-xs font-mono text-rose-500 mb-1 block uppercase tracking-wider">{item.year}</span>
+                    
+                    {/* Role Header */}
+                    <span className="text-xs font-mono text-rose-500 mb-1 block uppercase tracking-wider">
+                      {item.year}
+                    </span>
                     <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
                     <p className="text-sm font-medium text-zinc-400 mb-3">{item.company}</p>
-                    <p className="text-zinc-500 text-sm leading-relaxed max-w-lg">{item.desc}</p>
+                    
+                    {/* Role Description */}
+                    <p className={`text-zinc-500 text-sm leading-relaxed max-w-lg ${item.highlights ? 'mb-4' : ''}`}>
+                      {item.desc}
+                    </p>
+
+                    {/* Role Highlights (Conditional Render) */}
+                    {item.highlights && (
+                      <ul className="list-disc pl-5 space-y-3 text-zinc-400 text-sm max-w-lg marker:text-rose-500">
+                        {item.highlights.map((highlight, hIdx) => (
+                          <li key={hIdx}>
+                            <strong className="text-zinc-200">{highlight.label}: </strong>
+                            {highlight.text}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
