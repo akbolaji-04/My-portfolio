@@ -1,6 +1,6 @@
 # Headless Portfolio CMS
 
-> © 2024 Abolaji Akorede. All rights reserved. Unauthorized use, reproduction, or distribution of this project or any of its components is strictly prohibited.
+> © 2026 Abolaji Akorede. All rights reserved. Unauthorized use, reproduction, or distribution of this project or any of its components is strictly prohibited.
 
 A decoupled, high-performance content management system and personal portfolio architecture. This system intentionally separates the content management backend from the client-facing presentation layer, ensuring maximum scalability, enhanced security, and platform-agnostic data delivery.
 
