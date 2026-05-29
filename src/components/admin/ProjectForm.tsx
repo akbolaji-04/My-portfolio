@@ -257,6 +257,7 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
               <option value="Mobile Application">Mobile Application</option>
               <option value="Full-Stack System">Full-Stack System</option>
               <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Backend Service">Backend Service</option>
             </select>
           </div>
         </div>

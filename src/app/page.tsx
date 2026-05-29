@@ -1,8 +1,8 @@
 import { apiFetch } from "@/lib/api";
 import { Project } from "@/lib/types";
-import ProjectCard from "@/components/ProjectCard";
-import { Layers, MapPin, Sparkles } from "lucide-react";
+import { MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
+import ProjectFilter from "@/components/ProjectFilter";
 
 export const revalidate = 60;
 
@@ -25,7 +25,7 @@ export default async function Home() {
 
           {/* Profile Picture */}
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-rose-500 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-rose-500 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000" />
             <div className="relative h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden border-4 border-zinc-900 shadow-2xl">
               <Image
                 src="/Abolaji.jpg"
@@ -41,7 +41,9 @@ export default async function Home() {
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2 text-rose-500 mb-2">
               <Sparkles size={16} />
-              <span className="text-xs font-bold uppercase tracking-[0.2em]">Full-Stack Developer</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">
+                Full-Stack Developer
+              </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white leading-none">
               Abolaji{" "}
@@ -59,7 +61,7 @@ export default async function Home() {
             <span className="text-zinc-200 font-semibold">web and mobile</span>.
             Experienced with{" "}
             <span className="text-zinc-200 font-semibold">
-              Next.js, Flutter, PostgreSQL, and Firebase
+              Next.js, Python (FastAPI), Flutter, and PostgreSQL
             </span>
             .
           </p>
@@ -72,30 +74,23 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* PROJECTS SECTION */}
       <section className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex items-center justify-between mb-12 border-b border-zinc-800 pb-6">
-          <h2 className="text-3xl font-bold tracking-tight text-white">Featured Work</h2>
-          <span className="text-zinc-500 font-mono text-sm">{projects.length} Projects</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white">
+            Featured Work
+          </h2>
+          <span className="text-zinc-500 font-mono text-sm">
+            {projects.length} Projects
+          </span>
         </div>
 
-        {projects.length === 0 ? (
-          <div className="p-20 border border-dashed border-zinc-800 rounded-3xl text-center bg-zinc-900/20">
-            <Layers className="mx-auto mb-4 text-zinc-700" size={48} />
-            <p className="text-zinc-500">Connecting to CMS...</p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 gap-10">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
-        )}
+        <ProjectFilter projects={projects} />
       </section>
 
       {/* Footer */}
       <footer className="max-w-6xl mx-auto px-6 py-20 text-center text-zinc-600 text-sm border-t border-zinc-900 mt-20">
-        <p>© 2026 Abolaji Akorede. Built with Next.js & Laravel.</p>
+        <p>© 2026 Abolaji Akorede. Built with Next.js.</p>
       </footer>
     </main>
   );

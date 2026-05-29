@@ -6,8 +6,8 @@ import { Briefcase, Terminal, Server, MapPin, GraduationCap, Code2 } from "lucid
 export default function About() {
   const skills = [
     { name: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Flutter", "TypeScript"] },
-    { name: "Backend", items: ["Laravel", "Node.js", "PostgreSQL", "Firebase", "Supabase"] },
-    { name: "Tools", items: ["Git", "Docker", "Postman", "Figma", "Cloudinary"] },
+    { name: "Backend", items: ["Python (FastAPI)", "Laravel", "Node.js", "PostgreSQL", "Redis"] },
+    { name: "Tools & Infra", items: ["Git", "Docker", "Celery", "pgvector", "Postman", "Figma"] },
   ];
 
   const timeline = [
@@ -100,12 +100,14 @@ export default function About() {
               <div className="prose prose-invert prose-zinc text-lg leading-relaxed">
                 <p>
                   My work spans web applications using modern React frameworks, mobile applications
-                  with <strong className="text-white">Flutter</strong>, and backend systems & APIs that support
-                  real production traffic.
+                  with <strong className="text-white">Flutter</strong>, and backend systems & APIs built
+                  with <strong className="text-white">Python (FastAPI)</strong> that support real production traffic.
                 </p>
                 <p>
-                  While I'm particularly strong with <strong className="text-white">Next.js</strong>, I'm
-                  comfortable working across the stack and choosing tools based on the problem—not trends.
+                  On the backend I design asynchronous architectures using <strong className="text-white">Celery</strong>, 
+                  vector search with <strong className="text-white">pgvector</strong>, and document intelligence pipelines — 
+                  not just REST endpoints. On the frontend I'm particularly strong with <strong className="text-white">Next.js</strong>,
+                  choosing tools based on the problem, not trends.
                 </p>
                 <p>
                   Graduating from the <strong className="text-white">University of Ilorin</strong> with a degree
