@@ -5,49 +5,69 @@ import { Briefcase, Terminal, Server, MapPin, GraduationCap, Code2 } from "lucid
 
 export default function About() {
   const skills = [
-    { name: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Flutter", "TypeScript"] },
-    { name: "Backend", items: ["Python (FastAPI)", "Laravel", "Node.js", "PostgreSQL", "Redis"] },
-    { name: "Tools & Infra", items: ["Git", "Docker", "Celery", "pgvector", "Postman", "Figma"] },
+    { name: "Core Frontend", items: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript"] },
+    { name: "Frameworks & Libraries", items: ["React", "Next.js", "Tailwind CSS", "Vite", "Figma", "Laravel"] },
+    { name: "Backend & Database", items: ["Node.js", "PostgreSQL", "Supabase", "Firebase", "REST APIs"] },
   ];
 
   const timeline = [
     {
-      year: "2025 — Present",
-      title: "Lead Full-Stack Developer",
-      company: "Frontier Dynamics Limited · Lagos",
-      desc: "Leading the engineering team to build the technical foundation for FDL's emerging digital products. Because I operate with high autonomy and an agile, milestone-driven workflow, I am able to scale their architecture rapidly while maintaining the flexibility to take on select freelance engineering contracts.",
+      year: "Feb 2026 — Present",
+      title: "Lead Developer",
+      company: "Frontier Dynamics Limited (Remote)",
+      desc: "Engineered the frontend architecture using Next.js, guaranteeing a 100% responsive, high-performance user interface across all desktop and mobile devices.",
       highlights: [
         {
-          label: "Rapid Deployment",
-          text: "Architected, developed, and successfully deployed the official corporate web platform from scratch in exactly 1 month.",
+          label: "Team Leadership",
+          text: "Delegated feature development across the FDL platform, HIS Influence Church, and Hostel Connect projects to a team of intern developers to foster their practical skills.",
         },
         {
-          label: "Complex System Architecture",
-          text: "Currently engineering Hostel Connect, a scalable marketplace featuring a strict 4-tier Role-Based Access Control (RBAC) architecture and a secure escrow payment pipeline.",
+          label: "Quality Assurance",
+          text: "Supervised the intern team by conducting rigorous code reviews, mentoring, and refining their output to ensure all deliverables met production-ready standards.",
         },
         {
-          label: "Engineering Leadership",
-          text: "Directing and mentoring a team of 5 development interns. I manage code reviews, assign technical deliverables, and enforce production-grade architecture standards.",
+          label: "Optimization & Backend",
+          text: "Implemented advanced SEO architecture and core web vital optimizations, while integrating backend services to support growing client traffic.",
         },
       ],
     },
     {
-      year: "2024 — Present",
-      title: "Full-Stack Developer",
-      company: "Freelance",
-      desc: "Designing and building web and mobile solutions for clients, focusing on performance, maintainability, and clean user experience.",
+      year: "Jan 2022 — Present",
+      title: "Front-End Software Engineer",
+      company: "Independent Developer (Remote)",
+      desc: "Designed, developed, and deployed multiple web applications using Next.js, React, and TypeScript.",
+      highlights: [
+        {
+          label: "UI/UX Execution",
+          text: "Converted high-fidelity Figma designs into fully responsive, production-ready user interfaces.",
+        },
+        {
+          label: "Full-Stack Integrations",
+          text: "Built scalable backend services using PostgreSQL, Firebase, Supabase, and REST APIs to support frontend client architectures.",
+        },
+        {
+          label: "Performance",
+          text: "Optimized assets and workflows to achieve Lighthouse performance scores of 90+ across platforms.",
+        },
+      ]
     },
     {
-      year: "2023 — 2025",
-      title: "Senior Computer Operator",
-      company: "Flora Schools · Ilorin",
-      desc: "Supported academic and administrative systems, strengthening my understanding of how real users interact with technology in non-ideal conditions.",
+      year: "Mar 2025 — Oct 2025",
+      title: "Computer Instructor & IT Support",
+      company: "Flora College",
+      desc: "Managed a centralized student and staff database portal supporting over 500 users.",
+      highlights: [
+        {
+          label: "Training",
+          text: "Trained administrative and teaching staff on school management software, improving data accuracy and efficiency.",
+        }
+      ]
     },
     {
-      year: "2021 — 2025",
-      title: "B.Sc. Ed in Educational Technology",
-      company: "University of Ilorin",
-      desc: "Graduated with a focus on integrating technology into learning systems. This academic background drives my passion for building EdTech solutions.",
+      year: "Jan 2021 — Oct 2025",
+      title: "B.Sc. in Educational Technology",
+      company: "University of Ilorin, Nigeria",
+      desc: "Graduated with a focus on integrating technology into learning systems.",
     },
   ];
 
@@ -77,7 +97,7 @@ export default function About() {
             </span>
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl">
-            I'm <strong className="text-white">Abolaji Akorede</strong>, a software developer based in Lagos, Nigeria.
+            I'm <strong className="text-white">Abolaji Akorede</strong>, a Front-End Software Engineer based in Lagos, Nigeria.
             I build scalable digital products across web and mobile, with a strong focus on performance, clean
             architecture, and real-world usability.
           </p>
@@ -85,7 +105,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          {/* Left Column: Narrative & Timeline */}
+          {/* Narrative & Timeline */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -99,20 +119,13 @@ export default function About() {
               </h2>
               <div className="prose prose-invert prose-zinc text-lg leading-relaxed">
                 <p>
-                  My work spans web applications using modern React frameworks, mobile applications
-                  with <strong className="text-white">Flutter</strong>, and backend systems & APIs built
-                  with <strong className="text-white">Python (FastAPI)</strong> that support real production traffic.
+                  I specialize in building highly responsive, performant, and visually engaging web applications using <strong className="text-white">React, Next.js, and TypeScript</strong>.
                 </p>
                 <p>
-                  On the backend I design asynchronous architectures using <strong className="text-white">Celery</strong>, 
-                  vector search with <strong className="text-white">pgvector</strong>, and document intelligence pipelines — 
-                  not just REST endpoints. On the frontend I'm particularly strong with <strong className="text-white">Next.js</strong>,
-                  choosing tools based on the problem, not trends.
+                  While my primary expertise lies in translating high-fidelity designs into pixel-perfect, scalable user interfaces and optimizing core web vitals, I also bring practical full-stack experience. I am fully capable of engineering robust backend services and databases (<strong className="text-white">Node.js, PostgreSQL, Firebase</strong>) to support end-to-end product development.
                 </p>
                 <p>
-                  Graduating from the <strong className="text-white">University of Ilorin</strong> with a degree
-                  in Educational Technology gave me a unique perspective: technology is only as good as its
-                  usability. That conviction shapes every system I build.
+                  This allows me to bridge the gap between design and robust system architecture, ensuring the platforms I build can effortlessly scale with business growth.
                 </p>
               </div>
             </section>
@@ -140,7 +153,7 @@ export default function About() {
                       {item.desc}
                     </p>
 
-                    {/* Role Highlights (Conditional Render) */}
+                    {/* Role Highlights */}
                     {item.highlights && (
                       <ul className="list-disc pl-5 space-y-3 text-zinc-400 text-sm max-w-lg marker:text-rose-500">
                         {item.highlights.map((highlight, hIdx) => (
@@ -157,7 +170,7 @@ export default function About() {
             </section>
           </motion.div>
 
-          {/* Right Column: Skills & Info */}
+          {/* Skills & Info */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

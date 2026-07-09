@@ -42,7 +42,7 @@ export default async function Home() {
             <div className="flex items-center justify-center md:justify-start gap-2 text-rose-500 mb-2">
               <Sparkles size={16} />
               <span className="text-xs font-bold uppercase tracking-[0.2em]">
-                Full-Stack Developer
+                Front-End Software Engineer
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white leading-none">
@@ -57,13 +57,12 @@ export default async function Home() {
         {/* Bio */}
         <div className="max-w-2xl">
           <p className="text-xl text-zinc-400 leading-relaxed mb-6">
-            Building fast, scalable digital products across{" "}
-            <span className="text-zinc-200 font-semibold">web and mobile</span>.
+            Building highly responsive, performant, and visually engaging web applications.
             Experienced with{" "}
             <span className="text-zinc-200 font-semibold">
-              Next.js, Python (FastAPI), Flutter, and PostgreSQL
+              React, Next.js, and TypeScript
             </span>
-            .
+            , while bringing practical full-stack database and backend experience to the table.
           </p>
 
           {/* Location Badge */}
