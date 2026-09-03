@@ -30,19 +30,18 @@ export default function ProjectFilter({ projects }: { projects: Project[] }) {
 
   return (
     <div className="w-full">
-      {/* Filter Pills */}
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-        {filters.map(({ key, label, Icon }) => (
+      {/* Filter Links */}
+      <div className="flex flex-wrap items-center justify-start gap-8 mb-12 border-b border-zinc-900 pb-4">
+        {filters.map(({ key, label }) => (
           <button
             key={key}
             onClick={() => setFilter(key)}
-            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+            className={`text-sm font-bold uppercase tracking-widest transition-all duration-300 pb-4 -mb-[17px] ${
               filter === key
-                ? "bg-rose-500 text-white shadow-[0_0_20px_rgba(244,63,94,0.35)]"
-                : "bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-800"
+                ? "text-white border-b-2 border-white"
+                : "text-zinc-600 hover:text-zinc-300 border-b-2 border-transparent"
             }`}
           >
-            <Icon size={15} />
             {label}
           </button>
         ))}
@@ -56,10 +55,9 @@ export default function ProjectFilter({ projects }: { projects: Project[] }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="p-20 border border-dashed border-zinc-800 rounded-3xl text-center bg-zinc-900/20"
+            className="p-20 border border-zinc-800 text-center bg-black"
           >
-            <Terminal className="mx-auto mb-4 text-zinc-700" size={48} />
-            <p className="text-zinc-500">No projects in this category yet.</p>
+            <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold">No projects in this category.</p>
           </motion.div>
         ) : (
           <motion.div

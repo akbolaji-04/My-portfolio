@@ -1,5 +1,8 @@
 import Navbar from "@/components/Navbar";
+import { Outfit } from "next/font/google";
 import "./globals.css";
+
+const outfit = Outfit({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -8,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${outfit.className} bg-black text-white antialiased`}>
         <Navbar />
         {children}
       </body>

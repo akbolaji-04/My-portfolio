@@ -7,12 +7,8 @@ import { Project } from "@/lib/types";
 
 export default function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative bg-zinc-900/30 backdrop-blur-sm border border-zinc-800/50 rounded-[2.5rem] overflow-hidden hover:bg-zinc-900/60 hover:border-rose-500/40 transition-all duration-500"
+    <div
+      className="group relative bg-black border border-zinc-800 overflow-hidden hover:border-white transition-all duration-300"
     >
       {/* Visual Proof Section */}
       <div className="aspect-video w-full overflow-hidden relative bg-zinc-950">
@@ -45,22 +41,18 @@ export default function ProjectCard({ project, index }: { project: Project; inde
 
       {/* Card Body */}
       <div className="p-8 text-white">
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech_tags.map((tag) => (
-            <span key={tag.id} className="px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700/50">
-              {tag.name}
-            </span>
-          ))}
+        <div className="mb-6 text-[10px] font-black uppercase tracking-[0.15em] text-zinc-500">
+          {project.tech_tags.map(tag => tag.name).join(" / ")}
         </div>
         <div className="flex items-start justify-between mb-4">
-          <h3 className="text-3xl font-bold group-hover:text-rose-500 transition-colors">{project.title}</h3>
-          <ArrowUpRight size={24} className="text-zinc-600 group-hover:text-rose-500 transition-all" />
+          <h3 className="text-3xl font-bold group-hover:text-white transition-colors">{project.title}</h3>
+          <ArrowUpRight size={24} className="text-zinc-600 group-hover:text-white transition-all" />
         </div>
         <p className="text-zinc-400 leading-relaxed mb-10 line-clamp-2">{project.short_description}</p>
-        <Link href={`/projects/${project.slug}`} className="flex items-center justify-center w-full py-4 rounded-2xl bg-white text-black text-sm font-bold uppercase tracking-widest hover:bg-rose-500 hover:text-white transition-all duration-300 shadow-xl shadow-black/50">
+        <Link href={`/projects/${project.slug}`} className="flex items-center justify-center w-full py-4 bg-white text-black text-sm font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all duration-300">
           View Case Study
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }

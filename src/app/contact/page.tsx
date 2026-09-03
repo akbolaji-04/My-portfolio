@@ -85,7 +85,7 @@ export default function Contact() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#050505] text-zinc-300 selection:bg-rose-500 selection:text-white pt-32 pb-20">
+    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black pt-32 pb-20">
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Header */}
@@ -111,17 +111,16 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="lg:col-span-2 bg-zinc-900/30 border border-zinc-800 rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden group min-h-[300px]"
+            className="lg:col-span-2 bg-zinc-900 border border-zinc-800 p-8 flex flex-col justify-between relative overflow-hidden min-h-[300px]"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
             <div className="mb-8">
               <div className="flex flex-wrap items-center gap-3 text-zinc-400 mb-6">
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs font-mono border border-zinc-700/50">
-                  <MapPin size={14} className="text-rose-500" /> Lagos, NG
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-black text-xs font-bold uppercase tracking-widest border border-zinc-800">
+                  Lagos, NG
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs font-mono text-emerald-400 border border-zinc-700/50">
-                  ● {time} (WAT)
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-black text-xs font-bold uppercase tracking-widest text-white border border-zinc-800">
+                  {time} (WAT)
                 </div>
               </div>
               <h2 className="text-3xl font-bold text-white">Get in touch</h2>
@@ -144,8 +143,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* 2. Content Creator Cards  */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {contentLinks.map((link, i) => (
               <motion.a
                 key={link.name}
@@ -154,17 +152,13 @@ export default function Contact() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 + (i * 0.1) }}
-                className="group relative flex-1 bg-zinc-900/30 border border-zinc-800 rounded-3xl p-6 flex flex-col justify-center overflow-hidden hover:border-zinc-600 transition-all min-h-[140px]"
+                className="group flex flex-1 bg-black border border-zinc-800 p-6 items-center justify-between hover:bg-zinc-900 transition-all min-h-[140px]"
               >
-                 <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${link.color} blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity`} />
                  <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="p-2.5 bg-zinc-800 rounded-full text-white">{link.icon}</div>
-                      <ArrowUpRight size={20} className="text-zinc-600 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white">{link.name}</h3>
-                    <p className="text-xs text-zinc-500">{link.handle}</p>
+                    <h3 className="text-lg font-bold text-white mb-1">{link.name}</h3>
+                    <p className="text-xs text-zinc-500 uppercase font-bold tracking-widest">{link.handle}</p>
                  </div>
+                 <ArrowUpRight size={20} className="text-zinc-600 group-hover:text-white transition-colors" />
               </motion.a>
             ))}
           </div>
@@ -181,16 +175,18 @@ export default function Contact() {
                 key={social.name} 
                 href={social.url}
                 target="_blank"
-                className="group flex items-center gap-4 p-5 rounded-2xl border border-zinc-800 bg-zinc-900/20 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all"
+                className="group flex flex-col justify-between p-6 border border-zinc-800 bg-black hover:bg-zinc-900 transition-all min-h-[140px]"
               >
-                <div className={`p-3 rounded-full ${social.color} text-white shrink-0`}>
-                  {social.icon}
+                <div className="flex justify-between items-start mb-4">
+                  <div className="text-white">
+                    {social.name}
+                  </div>
+                  <ArrowUpRight size={20} className="text-zinc-600 group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white flex items-center gap-2 text-base">
-                    {social.name} 
+                  <h4 className="font-bold text-white text-base">
+                    {social.desc}
                   </h4>
-                  <p className="text-xs text-zinc-500">{social.desc}</p>
                 </div>
               </a>
             ))}
