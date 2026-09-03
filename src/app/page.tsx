@@ -24,7 +24,7 @@ export default async function Home() {
               src="/Abolaji.jpg"
               alt="Abolaji Akorede"
               fill
-              className="object-cover grayscale"
+              className="object-cover"
               priority
             />
           </div>
@@ -59,7 +59,7 @@ export default async function Home() {
       </section>
 
       {/* PROJECTS SECTION */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex items-center justify-between mb-12 border-b border-zinc-800 pb-6">
           <h2 className="text-3xl font-bold tracking-tight text-white">
             Featured Work

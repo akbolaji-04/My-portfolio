@@ -3,6 +3,7 @@ import { Project } from "@/lib/types";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Github, ExternalLink, Calendar, User, Layers } from "lucide-react";
+import ProjectGallery from "@/components/ProjectGallery";
 
 export const revalidate = 60;
 interface Props {
@@ -23,9 +24,9 @@ export default async function ProjectPage({ params }: Props) {
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       
       {/* Top Navigation */}
-      <nav className="max-w-5xl mx-auto px-6 py-8">
+      <nav className="max-w-5xl mx-auto px-6 pt-32 pb-8">
         <Link 
-          href="/" 
+          href="/#projects" 
           className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-white transition-all group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
@@ -67,19 +68,7 @@ export default async function ProjectPage({ params }: Props) {
             {/* Media Gallery */}
             <div className="space-y-6">
                <h3 className="text-xl font-bold text-white uppercase tracking-widest mb-6">Project Gallery</h3>
-               {project.media && project.media.length > 0 ? (
-                 <div className="grid gap-6">
-                    {project.media.map(media => (
-                      <div key={media.id} className="group aspect-video bg-zinc-900 border border-zinc-800 overflow-hidden">
-                        <img src={media.file_url} alt="Project screenshot" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-                      </div>
-                    ))}
-                 </div>
-               ) : (
-                 <div className="p-12 border border-zinc-800 text-center bg-zinc-900">
-                   <p className="text-zinc-600 font-bold uppercase text-xs tracking-widest">Visuals arriving soon.</p>
-                 </div>
-               )}
+               <ProjectGallery media={project.media} />
             </div>
           </div>
 

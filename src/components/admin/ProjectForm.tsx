@@ -27,11 +27,13 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
     role: initialData?.role || "",
     year: initialData?.year || "",
     project_type: initialData?.project_type || "Web Application",
-    media: initialData?.media?.[0]?.id
-      ? [initialData.media[0].id]
-      : ([] as string[]),
+    media: initialData?.media?.map((m) => m.id) || ([] as string[]),
     tech_tags: initialData?.tech_tags?.map((t) => t.name) || ([] as string[]),
   });
+
+  const [mediaPreviews, setMediaPreviews] = useState<{id: string, url: string}[]>(
+    initialData?.media?.map((m) => ({ id: m.id, url: m.file_url })) || []
+  );
 
   //  Tech Tags Logic
   const [tagInput, setTagInput] = useState("");
@@ -53,37 +55,56 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
 
   // Image Upload Logic
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.[0]) return;
+    if (!e.target.files?.length) return;
     setUploading(true);
 
-    const fileBody = new FormData();
-    fileBody.append("file", e.target.files[0]);
+    const uploadedIds = [...formData.media];
+    const newPreviews = [...mediaPreviews];
 
     try {
       const token = localStorage.getItem("admin_token");
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/media/upload`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json", 
-          },
-          body: fileBody,
-        },
-      );
-      const data = await res.json();
+      
+      for (let i = 0; i < e.target.files.length; i++) {
+        const file = e.target.files[i];
+        const fileBody = new FormData();
+        fileBody.append("file", file);
 
-      if (!res.ok) {
-        throw new Error(data.message || "Upload failed");
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/media/upload`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json", 
+            },
+            body: fileBody,
+          },
+        );
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.message || "Upload failed");
+        }
+        
+        uploadedIds.push(data.id);
+        newPreviews.push({ id: data.id, url: URL.createObjectURL(file) });
       }
       
-      setFormData({ ...formData, media: [data.id] }); 
+      setFormData({ ...formData, media: uploadedIds }); 
+      setMediaPreviews(newPreviews);
     } catch (error) {
       alert("Upload failed. Check console.");
     } finally {
       setUploading(false);
     }
+  };
+
+  const removeMedia = (idToRemove: string) => {
+    setFormData({
+      ...formData,
+      media: formData.media.filter(id => id !== idToRemove)
+    });
+    setMediaPreviews(mediaPreviews.filter(m => m.id !== idToRemove));
   };
 
   // 🚀 Submit Logic (Create or Update)
@@ -139,28 +160,43 @@ export default function ProjectForm({ initialData }: ProjectFormProps) {
         />
       </div>
 
-      {/* 2. Media Upload (The Hero Image) */}
+      {/* 2. Media Upload (The Hero Image / Gallery) */}
       <div>
         <label className="text-xs font-bold text-zinc-500 uppercase mb-2 block">
-          Hero Image
+          Project Images
         </label>
+        
+        {/* Previews Grid */}
+        {mediaPreviews.length > 0 && (
+          <div className="flex gap-4 overflow-x-auto pb-4 mb-4 snap-x">
+            {mediaPreviews.map((preview) => (
+              <div key={preview.id} className="relative w-40 h-40 shrink-0 snap-start group rounded-xl overflow-hidden border border-zinc-800">
+                <img src={preview.url} alt="Preview" className="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => removeMedia(preview.id)}
+                  className="absolute top-2 right-2 p-1.5 bg-black/70 hover:bg-rose-500 text-white rounded-full transition-all opacity-0 group-hover:opacity-100 backdrop-blur-md"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="border-2 border-dashed border-zinc-800 rounded-xl p-8 text-center hover:border-zinc-600 transition-colors relative">
           <input
             type="file"
+            multiple
             onChange={handleFileUpload}
             className="absolute inset-0 opacity-0 cursor-pointer"
           />
           {uploading ? (
             <Loader2 className="animate-spin mx-auto text-rose-500" />
-          ) : formData.media.length > 0 ? (
-            <div className="text-emerald-500 font-bold flex flex-col items-center">
-              <CheckCircle size={32} className="mb-2" />
-              Image Uploaded & Linked!
-            </div>
           ) : (
             <div className="flex flex-col items-center text-zinc-500">
               <UploadCloud size={32} className="mb-2" />
-              <p>Click or Drag to Upload Screenshot</p>
+              <p>Click or Drag to Upload Multiple Images</p>
             </div>
           )}
         </div>
